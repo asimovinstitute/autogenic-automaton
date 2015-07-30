@@ -1,4 +1,4 @@
-# autogenic-automaton
+# Autogenic Automaton
 
 Simulation of an autogenic process
 
