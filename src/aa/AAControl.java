@@ -24,6 +24,8 @@ public class AAControl {
         System.out.println("Finished launching");
         System.out.println("-----------------------------");
         
+        //test
+        
         //control.test(false);
         control.run();
         //control.experiment(false);        
