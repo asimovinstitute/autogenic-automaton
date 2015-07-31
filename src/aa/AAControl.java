@@ -8,6 +8,16 @@ import aa.view.AAView;
 
 public class AAControl {
     
+	/*
+	 * - experimenten uit paper herhalen in headless mode 
+	 *  (liefst via jar proberen) —> juiste settings achterhalen 
+	 *  en output controleren. Nadenken over handige I/O (csv, 
+	 *  verschillend per experiment type?)
+	 * - experiment type in args verwerken
+	 * - SEL negeren
+	 * - uiteindelijk .jar file opleveren
+	 */
+	
     //initialization parameters
 	private boolean pauseModelThread;
 	private boolean viewerActive = true;
@@ -28,8 +38,9 @@ public class AAControl {
         	System.out.println("Running GUI");
         	control.run();        	
         }
-        else if (args.length == 1 && args[0].equals("-headless")) {
-        	System.out.println("Running headless mode");
+        else if (args.length == 1 && args[0].equals("-exp")) {
+        	//TODO “java AA.jar -exp type [-param file.csv]”
+        	System.out.println("Running experiment without GUI");
         	control.experiment(false);	
         } else if (args.length == 1 && args[0].equals("-test")) {
         	System.out.println("Running tests");
