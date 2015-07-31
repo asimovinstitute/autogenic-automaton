@@ -23,12 +23,22 @@ public class AAControl {
         AAControl control = new AAControl();	        
         System.out.println("Finished launching");
         System.out.println("-----------------------------");
+                
+        if(args.length == 0) {
+        	System.out.println("Running GUI");
+        	control.run();        	
+        }
+        else if (args.length == 1 && args[0].equals("-headless")) {
+        	System.out.println("Running headless mode");
+        	control.experiment(false);	
+        } else if (args.length == 1 && args[0].equals("-test")) {
+        	System.out.println("Running tests");
+        	control.test(false);
+        }
+        else {
+        	System.out.println("Error in initialization: arguments not recognized");
+        }
         
-        //test
-        
-        //control.test(false);
-        control.run();
-        //control.experiment(false);        
 	}  
 	 	 
     public void experiment(boolean viewer) {    	
