@@ -1,1 +1,0 @@
-Initial particles,250,250,0,250,250,0,0Grid size,10,,,,,,Particle speed,0.1,,,,,,Simulation speed,4,,,,,,Probabilities,1,-0.5,6,0.5,6,0.5,Minimum capsule particles for encapsulation,2,,,,,,Maximum capsule particles,1000000,,,,,,Maximum contained particles weight,5,,,,,,Encapsulation,TRUE,,,,,,G removal,TRUE,,,,,,

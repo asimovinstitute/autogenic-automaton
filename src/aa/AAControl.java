@@ -1,9 +1,8 @@
 
 package aa;
 
-import aa.experiment.AAExp4;
+import aa.experiment.AAExperiment;
 import aa.model.AAModel;
-import aa.model.Grid2DFunctions;
 import aa.view.AAView;
 
 public class AAControl {
@@ -22,7 +21,7 @@ public class AAControl {
 	private boolean pauseModelThread;
 	private boolean viewerActive = true;
     
-    private AAModel model;
+    private AAModel model; 
     private AAView view;    
     
 	public static String DEFAULT_SETTINGS_FILEPATH = "./settings";
@@ -38,28 +37,40 @@ public class AAControl {
         	System.out.println("Running GUI");
         	control.run();        	
         }
-        else if (args.length == 1 && args[0].equals("-exp")) {
-        	//TODO “java AA.jar -exp type [-param file.csv]”
-        	System.out.println("Running experiment without GUI");
-        	control.experiment(false);	
+        else if (args.length == 5 && args[0].equals("-exp")) {
+        	/*
+        	 * necessary parameters: 
+        	 * 		-exp (run an experiment, rather than the GUI
+        	 * 		(TODO: is the type parameter really necessary? Would be great if not) 
+        	 * 		type (what type of experiment to run (e.g. SA, AC, AS, SEL): see paper for details)
+        	 *  	parameter file 
+        	 *  	trials (how many times should the experiment be run? (e.g. for averaging over multiple runs))
+        	 *  	iterations (for how many time steps should one experiment run?)
+        	 * e.g.“java AA.jar -exp SA SA.csv 10 1000”
+        	 */
+        	
+        	System.out.println("Running experiment "+args[1]+ 
+        			" with parameters set according to "+args[2]+
+        			" for "+args[3]+" trials consisting of "+args[4]+" time steps each.");        
+        	control.experiment(args[1], args[2], Integer.parseInt(args[3]), Integer.parseInt(args[4]));	
         } else if (args.length == 1 && args[0].equals("-test")) {
         	System.out.println("Running tests");
         	control.test(false);
         }
         else {
         	System.out.println("Error in initialization: arguments not recognized");
-        }
-        
+        }        
 	}  
 	 	 
-    public void experiment(boolean viewer) {    	
+    public void experiment(String type, String paramfile, int trials, int iterations) {    	
     	model = new AAModel(this);  
-    	viewerActive = viewer;
-    	if(viewer) {
+    	//no visible viewer in headless mode - perhaps add later 
+    	viewerActive = false;
+    	if(viewerActive) {
     		initializeViewer();
     		//model.setPriority(Thread.MIN_PRIORITY);
     	}
-    	AAExp4 exp = new AAExp4(this);
+    	AAExperiment exp = new AAExperiment(this, type, paramfile, trials, iterations);    	
     	model.start();    	
     	exp.start(); 
     }
