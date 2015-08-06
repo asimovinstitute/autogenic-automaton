@@ -24,7 +24,8 @@ public class AAControl {
     private AAModel model; 
     private AAView view;    
     
-	public static String DEFAULT_SETTINGS_FILEPATH = "./settings";
+	// NOTE deprecated, as running as a jar file would be better to explicitly state setting directory
+    public static String DEFAULT_SETTINGS_FILEPATH = "./settings";
 	
 	public static void main(String[] args) {
 
@@ -51,14 +52,14 @@ public class AAControl {
         	
         	System.out.println("Running experiment "+args[1]+ 
         			" with parameters set according to "+args[2]+
-        			" for "+args[3]+" trials consisting of "+args[4]+" time steps each.");        
+        			" for "+args[3]+" trials, consisting of "+args[4]+" time steps each.");        
         	control.experiment(args[1], args[2], Integer.parseInt(args[3]), Integer.parseInt(args[4]));	
         } else if (args.length == 1 && args[0].equals("-test")) {
         	System.out.println("Running tests");
         	control.test(false);
         }
         else {
-        	System.out.println("Error in initialization: arguments not recognized");
+        	System.out.println("Please enter a different set of arguments. Are you missing some (e.g. parameterfile)?");
         }        
 	}  
 	 	 

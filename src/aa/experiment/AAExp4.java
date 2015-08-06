@@ -41,12 +41,12 @@ public class AAExp4 {
 		int trials;
 		
 		//12s per trial  done
-		//trials = 100;	 //100	
-		//startSA3(5000,trials);  
+		trials = 100;	 //100	
+		startSA3(5000,trials);  
 			 
 		//10m per trial (niet veel trials nodig)    400 datapoint 10 trials draaien
-		trials = 1;
-		startAS2(250,5000,trials);		 
+		//trials = 1;
+		//startAS2(250,5000,trials);		 
 		
 		//30s per trial   done*/
 		
