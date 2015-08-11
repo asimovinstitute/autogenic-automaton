@@ -117,6 +117,19 @@ public final class AAUtil {
 		}		
 	}
 	
+	public static double[] getProbabilities(File fileToLoad) {		
+		double[] prob = new double[AAParameters.PROBABILITIES.length];
+		try {								
+			BufferedReader input = new BufferedReader(new FileReader(fileToLoad));
+			prob = AAParameters.getProbabilities(input);
+			input.close(); 				
+		} 			
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+		}	
+		return prob;
+	}
+	
 	
 	
 	

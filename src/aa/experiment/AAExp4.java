@@ -49,7 +49,6 @@ public class AAExp4 {
 		//startAS2(250,5000,trials);		 
 		
 		//30s per trial   done*/
-		
 		//startELIMSA(-2, -1, 1000, 5, trials, "ELIM.SA");
 		/*startELIMSA(-2, -2, 1000, 5, trials, "ELIM.SA");   
 		startELIMSA(-2, -3, 1000, 5, trials, "ELIM.SA");

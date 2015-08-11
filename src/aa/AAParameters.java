@@ -45,6 +45,8 @@ public class AAParameters {
     	return s;    	
     }   
     
+    
+    
     public static void stringToParameters(BufferedReader input) { //load
     	
     	try {
@@ -94,6 +96,28 @@ public class AAParameters {
     		System.out.println(e.getMessage());    		
     	}    	
     }	
+    
+
+    public static double[] getProbabilities(BufferedReader input) {
+    	double[] prob = new double[PROBABILITIES.length];
+    	try {
+	    	String s; 
+	    	while((s = input.readLine()) != null) { 
+	    		
+	    		String[] params = s.split(",");
+
+	    		if(params[0].equals("Probabilities")) {
+	    			for(int i=0;i<prob.length;i++) {
+	    				prob[i] = Double.parseDouble(params[i+1]);	    	    		 
+	    			}
+	    		}	    		
+	    	}
+    	}
+    	catch(Exception e){
+    		System.out.println(e.getMessage());    		
+    	}   
+    	return prob;
+    }
 }
 
 

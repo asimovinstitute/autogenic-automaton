@@ -29,41 +29,62 @@ public class AAControl {
 	
 	public static void main(String[] args) {
 
-		System.out.println("Launching Autogenic Automaton");
+		/* 
+    	 * 		Parameters - set in run configuration, or use args for .jar file
+    	 * 
+    	 * 		GUI: "java AA.jar" 
+    	 * 		Headless mode, stable parameters: "java AA.jar -exp SA.csv 1000 10"
+    	 * 		Headless mode, change in parameters: "java AA.jar -exp SA1.csv 100 SA2.csv 900 10"
+    	 * 		Help: "java AA.jar -help (or -h)
+    	 * 		Debug: "java AA.jar -test"
+    	 */
+		
         AAControl control = new AAControl();	        
-        System.out.println("Finished launching");
-        System.out.println("-----------------------------");
-                
+                        
         if(args.length == 0) {
-        	System.out.println("Running GUI");
-        	control.run();        	
-        }
-        else if (args.length == 5 && args[0].equals("-exp")) {
-        	/*
-        	 * necessary parameters: 
-        	 * 		-exp (run an experiment, rather than the GUI
-        	 * 		(TODO: is the type parameter really necessary? Would be great if not) 
-        	 * 		type (what type of experiment to run (e.g. SA, AC, AS, SEL): see paper for details)
-        	 *  	parameter file 
-        	 *  	trials (how many times should the experiment be run? (e.g. for averaging over multiple runs))
-        	 *  	iterations (for how many time steps should one experiment run?)
-        	 * e.g.“java AA.jar -exp SA SA.csv 10 1000”
-        	 */
         	
-        	System.out.println("Running experiment "+args[1]+ 
-        			" with parameters set according to "+args[2]+
-        			" for "+args[3]+" trials, consisting of "+args[4]+" time steps each.");        
-        	control.experiment(args[1], args[2], Integer.parseInt(args[3]), Integer.parseInt(args[4]));	
-        } else if (args.length == 1 && args[0].equals("-test")) {
-        	System.out.println("Running tests");
+        	System.out.println("Running GUI");
+        	control.run();
+        	
+        } 
+        else if (args.length == 4 && args[0].equals("-exp")) {        	        	
+        	
+        	System.out.println("Running experiment with parameters set according to "+args[1]+
+        			" for "+args[2]+
+        			" iterations, over "+args[3]+" trials.");
+        	control.experiment(args[1], Integer.parseInt(args[2]), Integer.parseInt(args[3]));	
+        	
+        } 
+        else if (args.length == 6 && args[0].equals("-exp")) {        	
+        	
+        	System.out.println("Running experiment with parameters set according to "+args[1]+
+        			" for the first "+args[2]+
+        			" iterations, then using "+args[3]+
+        			" for the remaining "+args[4]+" iterations, over "+args[5]+" trials.");
+        	control.experiment(args[1], Integer.parseInt(args[2]), args[3], Integer.parseInt(args[4]), Integer.parseInt(args[5]));
+        	
+        } 
+        else if (args.length == 1 && args[0].equals("-test")) {
+        	System.out.println("Running test(s)");
         	control.test(false);
         }
+        else if (args.length == 1 && (args[0].equals("-help") || args[0].equals("-h"))) {
+        	System.out.println("the Autogenic Automaton");
+        	System.out.println("created by Stefan Leijnen (stefan@leijnen.com), 2011-2015");
+        	System.out.println("*********************************************************");
+        	System.out.println("AA.jar can be used with the following parameters:");
+        	System.out.println("  to run as a stand-alone GUI: \"java AA.jar\"");
+        	System.out.println("  to run experiment with stable conditions: \"java AA.jar -exp [parameterfile] [iterations] [trials]\" (e.g. \"java AA.jar -exp SA.csv 1000 10\")");
+        	System.out.println("  to run experiment with changing conditions: \"java AA.jar -exp [parameterfile1] [iterations1] [parameterfile2] [iterations2] [trials]\" (e.g. \"java AA.jar -exp SA1.csv 100 SA2.csv 900 10\")");
+        	System.out.println("  to run debug test(s): \"java AA.jar -test\"");
+        	System.out.println("  to show help: \"java AA.jar -help\"");
+        }
         else {
-        	System.out.println("Please enter a different set of arguments. Are you missing some (e.g. parameterfile)?");
+        	System.out.println("Arguments not recognized; are you perhaps missing a parameter(file)?");
         }        
 	}  
 	 	 
-    public void experiment(String type, String paramfile, int trials, int iterations) {    	
+    public void experiment(String paramfile, int iterations, int trials) {    	
     	model = new AAModel(this);  
     	//no visible viewer in headless mode - perhaps add later 
     	viewerActive = false;
@@ -71,16 +92,29 @@ public class AAControl {
     		initializeViewer();
     		//model.setPriority(Thread.MIN_PRIORITY);
     	}
-    	AAExperiment exp = new AAExperiment(this, type, paramfile, trials, iterations);    	
+    	AAExperiment exp = new AAExperiment(this, paramfile, iterations, trials);    	
+    	model.start();    	
+    	exp.start(); 
+    }
+    
+    public void experiment(String paramfile1, int iterations1, String paramfile2, int iterations2, int trials) {    	
+    	model = new AAModel(this);  
+    	//no visible viewer in headless mode - perhaps add later 
+    	viewerActive = false;
+    	if(viewerActive) {
+    		initializeViewer();
+    		//model.setPriority(Thread.MIN_PRIORITY);
+    	}
+    	AAExperiment exp = new AAExperiment(this, paramfile1, iterations1, paramfile2, iterations2, trials);    	
     	model.start();    	
     	exp.start(); 
     }
              
 	private void test(boolean viewer) {    	  
     	System.out.println("test");
-    	model = new AAModel(this);    	    	
-    	model.start();    	
-    	model.getGrid().getGridFunctions().getNormalizedInformationEntropyMu();    	
+    	//model = new AAModel(this);    	    	
+    	//model.start();    	
+    	//model.getGrid().getGridFunctions().getNormalizedInformationEntropyMu();    	
     }
 		    
     public void run()

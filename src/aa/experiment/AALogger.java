@@ -13,7 +13,7 @@ public class AALogger {
 	
 	AAControl control;
 	String filePath;
-	public static final String DATE_FORMAT_NOW = "yyyy-MM-dd HH'.'mm'.'ss'.'";
+	public static final String DATE_FORMAT_NOW = "yyyy-MM-dd HH'.'mm'.'ss";
 	
 	public AALogger(AAControl c) {
 		control = c;
@@ -24,7 +24,7 @@ public class AALogger {
 	public AALogger(AAControl c, String fileName, boolean appendTimestamp) {
 		control = c;
 		//filePath = "log/" + fileName + (appendTimestamp ? " - " + getTime() : "") + ".csv"; changed to work better with jar file
-		filePath = fileName + (appendTimestamp ? " - " + getTime() : "") + ".csv"; 
+		filePath = "AALog-"+fileName + (appendTimestamp ? " - " + getTime() : "") + ".csv"; 
 	}
 		
 	public void write(String text) {
