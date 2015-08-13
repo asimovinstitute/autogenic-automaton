@@ -28,48 +28,41 @@ public class AAControl {
     public static String DEFAULT_SETTINGS_FILEPATH = "./settings";
 	
 	public static void main(String[] args) {
-
-		/* 
-    	 * 		Parameters - set in run configuration, or use args for .jar file
-    	 * 
-    	 * 		GUI: "java AA.jar" 
-    	 * 		Headless mode, stable parameters: "java AA.jar -exp SA.csv 1000 10"
-    	 * 		Headless mode, change in parameters: "java AA.jar -exp SA1.csv 100 SA2.csv 900 10"
-    	 * 		Help: "java AA.jar -help (or -h)
-    	 * 		Debug: "java AA.jar -test"
-    	 */
-		
+	
         AAControl control = new AAControl();	        
                         
         if(args.length == 0) {
         	
-        	System.out.println("Running GUI");
+        	System.out.println("\nRunning GUI");
         	control.run();
         	
         } 
         else if (args.length == 4 && args[0].equals("-exp")) {        	        	
         	
-        	System.out.println("Running experiment with parameters set according to "+args[1]+
+        	System.out.println("\nRunning experiment with parameters set according to "+args[1]+
         			" for "+args[2]+
         			" iterations, over "+args[3]+" trials.");
-        	control.experiment(args[1], Integer.parseInt(args[2]), Integer.parseInt(args[3]));	
+        	control.experiment(args[1], Integer.parseInt(args[2]), Integer.parseInt(args[3]));
+        	System.exit(0);
         	
         } 
         else if (args.length == 6 && args[0].equals("-exp")) {        	
         	
-        	System.out.println("Running experiment with parameters set according to "+args[1]+
+        	System.out.println("\nRunning experiment with parameters set according to "+args[1]+
         			" for the first "+args[2]+
         			" iterations, then using "+args[3]+
         			" for the remaining "+args[4]+" iterations, over "+args[5]+" trials.");
         	control.experiment(args[1], Integer.parseInt(args[2]), args[3], Integer.parseInt(args[4]), Integer.parseInt(args[5]));
+        	System.exit(0);
         	
         } 
         else if (args.length == 1 && args[0].equals("-test")) {
-        	System.out.println("Running test(s)");
+        	System.out.println("\nRunning test(s)");
         	control.test(false);
+        	System.exit(0);
         }
         else if (args.length == 1 && (args[0].equals("-help") || args[0].equals("-h"))) {
-        	System.out.println("the Autogenic Automaton");
+        	System.out.println("\nthe Autogenic Automaton");
         	System.out.println("created by Stefan Leijnen (stefan@leijnen.com), 2011-2015");
         	System.out.println("*********************************************************");
         	System.out.println("AA.jar can be used with the following parameters:");
@@ -77,10 +70,12 @@ public class AAControl {
         	System.out.println("  to run experiment with stable conditions: \"java AA.jar -exp [parameterfile] [iterations] [trials]\" (e.g. \"java AA.jar -exp SA.csv 1000 10\")");
         	System.out.println("  to run experiment with changing conditions: \"java AA.jar -exp [parameterfile1] [iterations1] [parameterfile2] [iterations2] [trials]\" (e.g. \"java AA.jar -exp SA1.csv 100 SA2.csv 900 10\")");
         	System.out.println("  to run debug test(s): \"java AA.jar -test\"");
-        	System.out.println("  to show help: \"java AA.jar -help\"");
+        	System.out.println("  to show help: \"java AA.jar -help\"\n");
+        	System.exit(0);
         }
         else {
-        	System.out.println("Arguments not recognized; are you perhaps missing a parameter(file)?");
+        	System.out.println("\nArguments not recognized; are you perhaps missing a parameter(file)?");
+        	System.exit(0);
         }        
 	}  
 	 	 
