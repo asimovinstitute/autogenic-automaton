@@ -3,6 +3,9 @@ package aa;
 
 import java.io.BufferedReader;
 
+// contains a set of hard-coded, default parameter values for running experiments 
+// whenever a parameter-.csv file is specified, the values below are overridden 
+
 public class AAParameters {
 
     public static int[] INIT_PARTICLES = new int[]{1000,1000,0,1000,1000,0,0};

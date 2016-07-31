@@ -19,8 +19,8 @@ public class ActivationPanel extends JPanel {
 	private JPanel particleGrid;
     private AAView view;  
     
-    private int _dimensionX = 500; //TODO update for rescaling window
-    private int _dimensionY = 500; //TODO update for rescaling window
+    private int _dimensionX = 500; 
+    private int _dimensionY = 500; 
         
     public ActivationPanel(AAView v) {
         view = v;

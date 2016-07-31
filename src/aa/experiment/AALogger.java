@@ -9,6 +9,8 @@ import java.util.Calendar;
 
 import aa.AAControl;
 
+// used for logging experiment runs as .csv files
+
 public class AALogger {
 	
 	AAControl control;

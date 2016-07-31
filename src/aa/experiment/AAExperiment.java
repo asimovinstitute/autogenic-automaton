@@ -9,6 +9,8 @@ import aa.AAControl;
 import aa.AAParameters;
 import aa.AAUtil;
 
+// contains helper functions for running the experiments - not an integral part of the AA code 
+
 public class AAExperiment {
 		
 	AAControl control;

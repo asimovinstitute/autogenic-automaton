@@ -14,6 +14,8 @@ import java.util.Random;
 import aa.model.Particle2D;
 import aa.model.Particle2DArrayList;
 
+// some methods used throughout the code
+
 public final class AAUtil {
 	
 	public static enum type{A, B, C, D, E, F, G};

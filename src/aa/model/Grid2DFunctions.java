@@ -197,8 +197,6 @@ public class Grid2DFunctions {
 			return 1.0;
 		}
 		else {				
-			//n or p.length ?????????? --> denk het niet i.v.m. afwijkende definitie van p(x). (kans dat een deeltje ipv kans dat een tile).
-			//antwoord: beiden blijken mogelijk! 
 			
 			/**** NORMALIZATIONTYPE IS DETERMINED HERE ****/
 			
@@ -212,7 +210,7 @@ public class Grid2DFunctions {
     	double[][] ageData = grid.getGridFunctions().getAgeData();
     	double[] ageDist = new double[ageData.length];
     	
-    	//NOTE: ONLY INTERESTED IN DISTRIBUTION OF NUMBER OF CAPSULES OVER TYPES
+    	//only interested in distribution of number of capsules over types
     	int sum = 0;
     	for(int i=0;i<ageDist.length;i++) {
     		ageDist[i] = ageData[i][1];
@@ -220,7 +218,7 @@ public class Grid2DFunctions {
     	}    	
     	
     	double ie;
-    	//if(sum < 1) { //NOTE: CHANGED TO MAKE IT CONSISTENT WITH NORM.ENT FUNCTION
+    	//if(sum < 1) { //changed to make consistent with normalized entropy function
     	if(sum < 2) {
     		ie = 1;
     	}
@@ -385,8 +383,8 @@ public class Grid2DFunctions {
 			
 		/**** NORMALIZATIONTYPE IS DETERMINED HERE ****
 
-		return (ce[0] + ce[1])/ (2.0*(Math.log(d1[0].length)/Math.log(2))); //delen door aantal tiles
-		//return (ce[0] + ce[1])/ (2.0*(Math.log((d1[1][0] + d2[1][0])*0.5)/Math.log(2)));  //delen door gemiddeld aantal voorkomens (?)		
+		return (ce[0] + ce[1])/ (2.0*(Math.log(d1[0].length)/Math.log(2))); //divide by number of tiles
+		//return (ce[0] + ce[1])/ (2.0*(Math.log((d1[1][0] + d2[1][0])*0.5)/Math.log(2)));  //divide by average number of occurences		
 	}*/
 	
 	
@@ -401,7 +399,7 @@ public class Grid2DFunctions {
 		kld[0] = getKLDivergence(d1[0], (int)Math.round(d1[1][0]), d2[0], (int)Math.round(d2[1][0]));
 		kld[1] = getKLDivergence(d2[0], (int)Math.round(d2[1][0]), d1[0], (int)Math.round(d1[1][0]));
 			
-		return (kld[0] + kld[1])/ (2.0*(Math.log(d1[0].length)/Math.log(2))); //delen door aantal tiles
+		return (kld[0] + kld[1])/ (2.0*(Math.log(d1[0].length)/Math.log(2))); //divide by number of tiles
 	}*/
 	
 	
@@ -418,8 +416,7 @@ public class Grid2DFunctions {
 	
 	
 	/*
-	 * http://staff.science.uva.nl/~tsagias/?p=185
-	 * (only available in google cache)
+	 * see http://staff.science.uva.nl/~tsagias/?p=185
 	 */
 	public double getSymmetrizedKLDivergenceWithGammaSmoothing() {
 		double[][] d1 = getDistributionWithMinimum(1);
@@ -456,7 +453,6 @@ public class Grid2DFunctions {
 		//check if probabilities sum to 1 (just for checks)
 		//sum g(i)/sumG for all i in G 
 		//same for R
-		//TODO (perhaps just print)
 		
 		double div = 0.0;
 		
@@ -570,14 +566,6 @@ public class Grid2DFunctions {
 	}*/
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
 	/*public double getAverageCrossEntropy() {//overloaded
 		double[][] d1 = getDistribution(1);
 		double[][] d2 = getDistribution(2);
@@ -600,25 +588,6 @@ public class Grid2DFunctions {
 	}*/
 	
 
-    
-	
-    
-    
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
     
     /**** UNUSED METHODS ****/
     

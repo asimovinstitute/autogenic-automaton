@@ -72,8 +72,6 @@ public class AAModel extends Thread {
     public void update() {            		
     	g.next();    	    	  
     	iteration++;  
-    	
-    	//System.out.println(this.getGrid().getGridFunctions().getNormalizedInformationEntropy(2));
     }
    
     public Grid2D getGrid() {

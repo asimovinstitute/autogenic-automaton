@@ -7,24 +7,15 @@ import aa.view.AAView;
 
 public class AAControl {
     
-	/*
-	 * - experimenten uit paper herhalen in headless mode 
-	 *  (liefst via jar proberen) —> juiste settings achterhalen 
-	 *  en output controleren. Nadenken over handige I/O (csv, 
-	 *  verschillend per experiment type?)
-	 * - experiment type in args verwerken
-	 * - SEL negeren
-	 * - uiteindelijk .jar file opleveren
-	 */
 	
-    //initialization parameters
+    // initialization of parameters
 	private boolean pauseModelThread;
 	private boolean viewerActive = true;
     
     private AAModel model; 
     private AAView view;    
     
-	// NOTE deprecated, as running as a jar file would be better to explicitly state setting directory
+	// running as a jar file would be better to explicitly state setting directory
     public static String DEFAULT_SETTINGS_FILEPATH = "./settings";
 	
 	public static void main(String[] args) {
@@ -63,7 +54,7 @@ public class AAControl {
         }
         else if (args.length == 1 && (args[0].equals("-help") || args[0].equals("-h"))) {
         	System.out.println("\nthe Autogenic Automaton");
-        	System.out.println("created by Stefan Leijnen (stefan@leijnen.com), 2011-2015");
+        	System.out.println("created by Stefan Leijnen (stefan@leijnen.com), 2011-2016");
         	System.out.println("*********************************************************");
         	System.out.println("AA.jar can be used with the following parameters:");
         	System.out.println("  to run as a stand-alone GUI: \"java AA.jar\"");
@@ -81,7 +72,7 @@ public class AAControl {
 	 	 
     public void experiment(String paramfile, int iterations, int trials) {    	
     	model = new AAModel(this);  
-    	//no visible viewer in headless mode - perhaps add later 
+    	//no visible viewer in headless mode 
     	viewerActive = false;
     	if(viewerActive) {
     		initializeViewer();
@@ -94,7 +85,7 @@ public class AAControl {
     
     public void experiment(String paramfile1, int iterations1, String paramfile2, int iterations2, int trials) {    	
     	model = new AAModel(this);  
-    	//no visible viewer in headless mode - perhaps add later 
+    	//no visible viewer in headless mode 
     	viewerActive = false;
     	if(viewerActive) {
     		initializeViewer();
